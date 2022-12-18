@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="adminCate.css">
+</head>
+<body>
+
+<!--
+Begin Main
+-->
+<div id="main">
+  <!--
+  Begin Nav
+  -->
+
+  <div class="w3-container">
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark shadow-lg">
+      <button type="button" class="close text-right mr-4 " aria-label="Open"><span aria-hidden="true"><i class="bi bi-list" style="color: white; font-size: 25px"></i></span></button>
+      <a href="#" class="navbar-brand"><b>Cloud Computing</b></a>
+
+      <!-- Collection of nav links, forms, and other content for toggling -->
+      <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
+        <div class="navbar-nav ml-auto">
+          <a th:href="@{/}" class="nav-item nav-link active mr-2"><i class="bi bi-house"></i></a>
+
+        </div>
+      </div>
+    </nav>
+  </div>
+  <!--
+  End Nav
+  -->
+
+  <!--
+Begin content
+-->
+  <div class="content-cate mt-5">
+    <div class="container">
+      <div class="card">
+        <div class="card-header d-flex justify-content-md-between">
+          <span class="text-title">Users Management</span>
+          <a th:href="@{/add}" class="btn btn-success">Add User</a>
+        </div>
+        <div th:if="${message}" class="alert alert-success text-center">
+          [[${message}]]
+        </div>
+        <div class="body">
+          <table class="table">
+            <thead class="thead-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Action</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="user: ${listUsers}">
+              <tr>
+                <td>[[${user.id}]]</td>
+                <td>[[${user.name}]]</td>
+                <td style="font-size: 20px">
+                  <a th:href="@{'/edit/' + ${user.id}}" type="button" class="btn btn-secondary btn-sm"><i class="bi bi-pencil-square"></i></a>
+                  <a th:href="@{'/delete/'+${user.id}}" type="button" class="btn btn-secondary btn-sm"><i class="bi bi-trash"></i></a>
+                </td>
+              </tr>
+            </th:block>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+End content
+-->
+</div>
+
+<!--
+End Main
+-->
+<script>
+  function w3_open() {
+    document.getElementById("main").style.marginLeft = "15%";
+    document.getElementById("mySidebar").style.width = "15%";
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("openNav").style.display = 'none';
+  }
+  function w3_close() {
+    document.getElementById("main").style.marginLeft = "0%";
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("openNav").style.display = "inline-block";
+  }
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+</body>
+</html>
